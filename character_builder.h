@@ -1,3 +1,4 @@
+#pragma once
 #ifndef CHARACTER_BUILDER_H
 #define CHARACTER_BUILDER_H
 
@@ -5,6 +6,7 @@
 #include "character/character_reader.h"
 class Character;
 class QGridLayout;
+class NameScreen;
 
 
 
@@ -16,11 +18,12 @@ public:
     CharacterBuilder(QWidget* parent = nullptr);
     virtual ~CharacterBuilder() = default;
 
-
 private:
     Character* character;
     CharacterReader reader;
     QGridLayout* layout;
+
+    NameScreen* nameScreen;
 };
 
 #endif // CHARACTER_BUILDER_H

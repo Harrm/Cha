@@ -17,9 +17,11 @@ CONFIG += c++14
 SOURCES += main.cpp\
     character_builder.cpp \
     character/character.cpp \
-    character/character_reader.cpp
+    character/character_reader.cpp \
+    interface/name_screen.cpp
 
 HEADERS  += \
     character_builder.h \
     character/character.h \
-    character/character_reader.h
+    character/character_reader.h \
+    interface/name_screen.h

@@ -47,12 +47,12 @@ void Character::upLevel() {
 
 
 
-Character::Name Character::getName() {
+const Character::Name& Character::getName() const {
     return name;
 }
 
 
 
-Character::Level Character::getLevel() {
+Character::Level Character::getLevel() const {
     return level;
 }

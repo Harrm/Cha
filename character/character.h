@@ -6,11 +6,11 @@
 
 
 
-class Character{
+class Character {
+public:
     using Level = u_int8_t;
     using Name = QString;
 
-public:
     Character();
     Character(const Name& name, Level level = 1);
     Character(Level level);
@@ -22,8 +22,8 @@ public:
     void setName(const Name& name);
     void upLevel();
 
-    Name getName();
-    Level getLevel();
+    const Name& getName() const;
+    Level getLevel() const;
 
 private:
     Name name;

@@ -3,6 +3,7 @@
 #include <QGridLayout>
 #include "character/character_reader.h"
 #include "character/character.h"
+#include "interface/name_screen.h"
 
 
 
@@ -12,7 +13,12 @@ CharacterBuilder::CharacterBuilder(QWidget* parent):
     layout = new QGridLayout(this);
     character = reader.readCharacter("data/default_character.xml");
 
-    layout->addWidget(new QLabel(character->getName(), this), 0, 0);
+    nameScreen = new NameScreen(this);
+
+    layout->addWidget(nameScreen, 0, 0);
+
+    connect(nameScreen, &NameScreen::nameChanged,
+            this,        [this](const Character::Name& name) {character->setName(name);});
 
     setLayout(layout);
     resize(300, 300);

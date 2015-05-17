@@ -12,51 +12,105 @@ CharacterReader::CharacterReader() {
 
 
 CharacterReader::~CharacterReader() {
-    if (character != nullptr) {
-        delete character;
-    }
+    deleteCharacter();
 }
 
 
 
-Character* CharacterReader::readCharacter(const QString& path) {
-    if(character != nullptr) {
-        delete character;
-    }
+Character* CharacterReader::readCharacter(Path path) {
+    deleteCharacter();
 
     QFile file(path);
-    
-    if(!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+
+    if(not file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QMessageBox::critical(nullptr, "Error when read character", "File not found:"+path);
         return nullptr;
     }
-    
     setDevice(&file);
 
     while(not atEnd()) {
         switch(readNext()) {
         case StartElement:
-            if (name() == "character") {
-                (attributes().hasAttribute("level")) ?
-                            character = new Character(attributes().value("level").toUShort())
-                :           character = new Character;
-            } else if (name() == "name") {
-                if (readNext() == Characters) {
-                    character->setName(text().toString());
-                }
+            if(readElement() == Error) {
+                deleteCharacter();
+                return nullptr;
             }
             break;
-        case EndDocument:
-            return character;
+
+        case EndElement:
+            if (name() == "character") {
+                return character;
+            }
 
         default:
-            break;
+            ;
         }
     }
     
     if(hasError()) {
-        QMessageBox::critical(nullptr, "Error when read character", errorString());
+        QMessageBox::critical(nullptr, path+": error when read character", errorString());
     }
 
     return nullptr;
+}
+
+
+
+CharacterReader::Result CharacterReader::setFile(Path path) {
+    QFile file(path);
+
+    if(not file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QMessageBox::critical(nullptr, "Error when read character", "File not found:"+path);
+        return Error;
+    }
+
+    setDevice(&file);
+    return Ok;
+}
+
+
+
+CharacterReader::Result CharacterReader::readElement() {
+    if (name() == "character") {
+        readCharacterTag();
+
+    } else if (name() == "name") {
+        if (readNameTag() == Error) {
+            QMessageBox::critical(nullptr, "Error when read character", "Invalid character name");
+            return Error;
+        }
+    }
+    return Ok;
+}
+
+
+
+void CharacterReader::readCharacterTag() {
+    if (attributes().hasAttribute("level")) {
+        character = new Character(attributes().value("level").toUShort());
+
+    } else {
+        character = new Character;
+    }
+}
+
+
+
+CharacterReader::Result CharacterReader::readNameTag() {
+    if (readNext() == Characters) {
+        character->setName(text().toString());
+        return Ok;
+
+    } else {
+        return Error;
+    }
+}
+
+
+
+void CharacterReader::deleteCharacter() {
+    if(character != nullptr) {
+        delete character;
+        character = nullptr;
+    }
 }
