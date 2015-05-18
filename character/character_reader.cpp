@@ -79,6 +79,11 @@ CharacterReader::Result CharacterReader::readElement() {
             QMessageBox::critical(nullptr, "Error when read character", "Invalid character name");
             return Error;
         }
+    } else if (name() == "ability") {
+        if (readAbilityTag() == Error) {
+            QMessageBox::critical(nullptr, "Error when read character", "Invalid ability");
+            return Error;
+        }
     }
     return Ok;
 }
@@ -104,6 +109,25 @@ CharacterReader::Result CharacterReader::readNameTag() {
     } else {
         return Error;
     }
+}
+
+
+
+CharacterReader::Result CharacterReader::readAbilityTag() {
+    Character::Name ability_name = "Undefined";
+    Character::Value ability_value = 10;
+
+    if (attributes().hasAttribute("name") and attributes().hasAttribute("value")) {
+        ability_name = attributes().value("name").toString();
+        ability_value = attributes().value("value").toShort();
+
+        character->abilities.insert(ability_name, ability_value);
+
+    } else {
+        return Error;
+    }
+
+    return Ok;
 }
 
 

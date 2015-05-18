@@ -23,6 +23,7 @@ private:
     Result readElement();
     void readCharacterTag();
     Result readNameTag();
+    Result readAbilityTag();
 
     void deleteCharacter();
 
