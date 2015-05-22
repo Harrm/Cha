@@ -13,7 +13,7 @@ class Character {
 public:
     using Level = u_int8_t;
     using Name = QString;
-    using Value = int16_t;
+    using Value = u_int16_t;
 
     Character();
     Character(const Name& name, Level level = 1);
@@ -28,10 +28,10 @@ public:
     void setAbilityValue(Name ability_name, Value value);
 
     const Name& getName() const;
+    Level getLevel() const;
     Value getAbilityValue(Name ability_name) const;
     Value getAbilityModifier(Name ability_name) const;
     const QMap<Name, Value>& getAbilities() const;
-    Level getLevel() const;
 
 private:
     Name name;

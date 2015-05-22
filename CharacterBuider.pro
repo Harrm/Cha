@@ -18,10 +18,13 @@ SOURCES += main.cpp\
     character_builder.cpp \
     character/character.cpp \
     character/character_reader.cpp \
-    interface/name_screen.cpp
+    interface/name_screen.cpp \
+    interface/ability_screen.cpp \
+    interface/ability_screen_line.cpp
 
-HEADERS  += \
-    character_builder.h \
+HEADERS  += character_builder.h \
     character/character.h \
     character/character_reader.h \
-    interface/name_screen.h
+    interface/name_screen.h \
+    interface/ability_screen.h \
+    interface/ability_screen_line.h

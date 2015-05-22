@@ -7,6 +7,7 @@
 class Character;
 class QGridLayout;
 class NameScreen;
+class AbilityScreen;
 
 
 
@@ -24,6 +25,7 @@ private:
     QGridLayout* layout;
 
     NameScreen* nameScreen;
+    AbilityScreen* abilityScreen;
 };
 
 #endif // CHARACTER_BUILDER_H
