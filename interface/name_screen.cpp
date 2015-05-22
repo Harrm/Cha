@@ -12,6 +12,7 @@ NameScreen::NameScreen(QWidget* parent):
 
     nameEdit = new QLineEdit(this);
     levelEdit = new QSpinBox(this);
+    levelEdit->setRange(1, 20);
 
     connect(nameEdit, &QLineEdit::textEdited,
             this,      &NameScreen::nameChanged);
