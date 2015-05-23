@@ -28,3 +28,6 @@ HEADERS  += character_builder.h \
     interface/name_screen.h \
     interface/ability_screen.h \
     interface/ability_screen_line.h
+
+DISTFILES += \
+    bin/Debug/data/default_character.xml

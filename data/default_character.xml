@@ -1,0 +1,12 @@
+<character level = '1'>
+	<name>Harrm</name>
+	
+	<ability name='Strength' value='10'/>
+	<ability name='Constitution' value='10'/>
+	<ability name='Dexterity' value='10'/>
+	
+	<ability name='Intelligence' value='10'/>
+	<ability name='Wisdom' value='10'/>
+	<ability name='Charisma' value='10'/>
+	
+</character>
