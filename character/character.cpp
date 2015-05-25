@@ -49,8 +49,22 @@ void Character::setAbilityValue(Name ability_name, Value value) {
 
 
 
+void Character::setSkillTrained(Name skill_name, bool is_trained) {
+    if(auto iterator = skills.find(skill_name) != skills.end()) {
+        iterator = is_trained;
+    }
+}
+
+
+
 void Character::upLevel() {
     level++;
+}
+
+
+
+Character::Value Character::getProfiency() const {
+    return level/5 + 2;
 }
 
 
@@ -73,6 +87,20 @@ Character::Value Character::getAbilityModifier(Name ability_name) const {
     auto value = abilities.find(ability_name).value();
     auto modifier = (value - 10) % 2;
     return modifier;
+}
+
+
+
+bool Character::isSkillTrained(Name skill_name) const {
+    return skills.find(skill_name).value();
+}
+
+
+
+const QMap<Character::Name, bool>&
+    Character::getSkills() const {
+
+    return skills;
 }
 
 

@@ -24,6 +24,7 @@ private:
     void readCharacterTag();
     Result readNameTag();
     Result readAbilityTag();
+    Result readSkillTag();
 
     void deleteCharacter();
 

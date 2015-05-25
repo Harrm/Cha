@@ -84,6 +84,11 @@ CharacterReader::Result CharacterReader::readElement() {
             QMessageBox::critical(nullptr, "Error when read character", "Invalid ability");
             return Error;
         }
+    } else if (name() == "skill") {
+        if (readSkillTag() == Error) {
+            QMessageBox::critical(nullptr, "Error when read character", "Invalid skill");
+            return Error;
+        }
     }
     return Ok;
 }
@@ -114,14 +119,38 @@ CharacterReader::Result CharacterReader::readNameTag() {
 
 
 CharacterReader::Result CharacterReader::readAbilityTag() {
-    Character::Name ability_name = "Undefined";
-    Character::Value ability_value = 10;
-
-    if (attributes().hasAttribute("name") and attributes().hasAttribute("value")) {
-        ability_name = attributes().value("name").toString();
-        ability_value = attributes().value("value").toShort();
+   if (attributes().hasAttribute("name") and attributes().hasAttribute("value")) {
+        Character::Name ability_name = attributes().value("name").toString();
+        Character::Value ability_value = attributes().value("value").toShort();
 
         character->abilities.insert(ability_name, ability_value);
+
+    } else {
+        return Error;
+    }
+
+    return Ok;
+}
+
+
+
+CharacterReader::Result CharacterReader::readSkillTag() {
+    if (attributes().hasAttribute("name") and attributes().hasAttribute("trained")) {
+        Character::Name skill_name = attributes().value("name").toString();
+
+        bool is_trained;
+        const QString& trained_string = attributes().value("trained").toString();
+
+        if (trained_string == "true") {
+            is_trained = true;
+
+        } else if (trained_string == "false") {
+            is_trained = false;
+
+        } else {
+            return Error;
+        }
+        character->skills.insert(skill_name, is_trained);
 
     } else {
         return Error;

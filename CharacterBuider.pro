@@ -20,14 +20,16 @@ SOURCES += main.cpp\
     character/character_reader.cpp \
     interface/name_screen.cpp \
     interface/ability_screen.cpp \
-    interface/ability_screen_line.cpp
+    interface/ability_screen_line.cpp \
+    interface/skill_screen.cpp
 
 HEADERS  += character_builder.h \
     character/character.h \
     character/character_reader.h \
     interface/name_screen.h \
     interface/ability_screen.h \
-    interface/ability_screen_line.h
+    interface/ability_screen_line.h \
+    interface/skill_screen.h
 
 DISTFILES += \
     bin/Debug/data/default_character.xml

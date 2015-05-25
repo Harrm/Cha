@@ -26,17 +26,22 @@ public:
     void setName(const Name& name);
     void upLevel();
     void setAbilityValue(Name ability_name, Value value);
+    void setSkillTrained(Name skill_name, bool is_trained);
 
     const Name& getName() const;
     Level getLevel() const;
+    Value getProfiency() const;
     Value getAbilityValue(Name ability_name) const;
     Value getAbilityModifier(Name ability_name) const;
     const QMap<Name, Value>& getAbilities() const;
+    bool isSkillTrained(Name skill_name) const;
+    const QMap<Name, bool>& getSkills() const;
 
 private:
     Name name;
     Level level;
     QMap<Name, Value> abilities;
+    QMap<Name, bool> skills;
 };
 
 #endif // CHARACTER_H
