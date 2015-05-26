@@ -9,11 +9,9 @@ AbilityScreen::Line::Line(const QString& ability_name, QWidget* parent):
     QWidget(parent) {
 
     name = new QLabel(ability_name, this);
-    name->setMaximumSize(300, 30);
     valueSpin = new QSpinBox(this);
-    valueSpin->setMaximumSize(50, 30);
+    valueSpin->setMaximumWidth(70);
     modifier = new QLabel(this);
-    modifier->setMaximumSize(30, 30);
 
     void (QSpinBox::*f)(int) = &QSpinBox::valueChanged;
     connect(valueSpin, f, this, &Line::setValue);

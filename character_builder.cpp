@@ -33,7 +33,7 @@ void CharacterBuilder::createScreens() {
 
 void CharacterBuilder::createNameScreen() {
     nameScreen = new NameScreen(this);
-    layout->addWidget(nameScreen, 0, 0);
+    layout->addWidget(nameScreen, 0, 0, Qt::AlignLeft);
     connect(nameScreen, &NameScreen::nameChanged,
             this,        [this](const Character::Name& name) {character->setName(name);});
 
@@ -54,7 +54,7 @@ void CharacterBuilder::createAbilityScreen() {
             [this](const QString& ability_name, u_int16_t value) {
                 character->getAbility(ability_name).setValue(value);
             });
-    layout->addWidget(abilityScreen, 1, 0);
+    layout->addWidget(abilityScreen, 1, 0, Qt::AlignLeft);
 }
 
 

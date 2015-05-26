@@ -11,12 +11,14 @@ NameScreen::NameScreen(QWidget* parent):
     layout = new QHBoxLayout(this);
 
     nameEdit = new QLineEdit(this);
+    nameEdit->setMaximumWidth(500);
+
     levelEdit = new QSpinBox(this);
+    levelEdit->setMaximumWidth(70);
     levelEdit->setRange(1, 20);
 
     connect(nameEdit, &QLineEdit::textEdited,
             this,      &NameScreen::nameChanged);
-
     void (QSpinBox::*valueChange)(int) = &QSpinBox::valueChanged;
     connect(levelEdit, valueChange,
             this,       &NameScreen::levelChanged);
