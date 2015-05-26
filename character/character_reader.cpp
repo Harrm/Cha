@@ -123,7 +123,7 @@ CharacterReader::Result CharacterReader::readAbilityTag() {
         Character::Name ability_name = attributes().value("name").toString();
         Character::Value ability_value = attributes().value("value").toShort();
 
-        character->abilities.insert(ability_name, ability_value);
+        character->abilities.push_back(Ability(ability_name, ability_value));
 
     } else {
         return Error;

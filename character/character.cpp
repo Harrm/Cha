@@ -41,14 +41,6 @@ void Character::setName(const Name& name) {
 
 
 
-void Character::setAbilityValue(Name ability_name, Value value) {
-    if(abilities.contains(ability_name)) {
-        *(abilities.find(ability_name)) = value;
-    }
-}
-
-
-
 void Character::setSkillTrained(Name skill_name, bool is_trained) {
     if(auto iterator = skills.find(skill_name) != skills.end()) {
         iterator = is_trained;
@@ -69,24 +61,28 @@ Character::Value Character::getProfiency() const {
 
 
 
-const QMap<Character::Name, Character::Value>&
-    Character::getAbilities() const {
-
+const QList<Ability>& Character::getAbilities() const {
     return abilities;
 }
 
 
 
-Character::Value Character::getAbilityValue(Name ability_name) const {
-    return abilities.find(ability_name).value();
+const Ability& Character::getAbility(const QString& name) const {
+    for(auto& ability : abilities) {
+        if(ability.getName() == name) {
+            return ability;
+        }
+    }
 }
 
 
 
-Character::Value Character::getAbilityModifier(Name ability_name) const {
-    auto value = abilities.find(ability_name).value();
-    auto modifier = (value - 10) % 2;
-    return modifier;
+Ability& Character::getAbility(const QString& name) {
+    for(auto& ability : abilities) {
+        if(ability.getName() == name) {
+            return ability;
+        }
+    }
 }
 
 

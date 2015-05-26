@@ -21,6 +21,11 @@ public:
     virtual ~CharacterBuilder() = default;
 
 private:
+    void createScreens();
+        void createNameScreen();
+        void createAbilityScreen();
+        void createSkillScreen();
+
     Character* character;
     CharacterReader reader;
     QGridLayout* layout;
