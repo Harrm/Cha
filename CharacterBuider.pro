@@ -22,7 +22,8 @@ SOURCES += main.cpp\
     interface/ability_screen.cpp \
     interface/ability_screen_line.cpp \
     interface/skill_screen.cpp \
-    character/ability.cpp
+    character/ability.cpp \
+    character/skill.cpp
 
 HEADERS  += character_builder.h \
     character/character.h \
@@ -31,7 +32,8 @@ HEADERS  += character_builder.h \
     interface/ability_screen.h \
     interface/ability_screen_line.h \
     interface/skill_screen.h \
-    character/ability.h
+    character/ability.h \
+    character/skill.h
 
 DISTFILES += \
     bin/Debug/data/default_character.xml

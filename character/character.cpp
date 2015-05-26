@@ -41,13 +41,6 @@ void Character::setName(const Name& name) {
 
 
 
-void Character::setSkillTrained(Name skill_name, bool is_trained) {
-    if(auto iterator = skills.find(skill_name) != skills.end()) {
-        iterator = is_trained;
-    }
-}
-
-
 
 void Character::upLevel() {
     level++;
@@ -87,15 +80,27 @@ Ability& Character::getAbility(const QString& name) {
 
 
 
-bool Character::isSkillTrained(Name skill_name) const {
-    return skills.find(skill_name).value();
+Skill& Character::getSkill(Name skill_name) {
+    for(auto& skill : skills) {
+        if(skill.getName() == name) {
+            return skill;
+        }
+    }
 }
 
 
 
-const QMap<Character::Name, bool>&
-    Character::getSkills() const {
+const Skill& Character::getSkill(Name skill_name) const {
+    for(auto& skill : skills) {
+        if(skill.getName() == name) {
+            return skill;
+        }
+    }
+}
 
+
+
+const QList<Skill>& Character::getSkills() const {
     return skills;
 }
 

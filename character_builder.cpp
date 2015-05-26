@@ -61,10 +61,15 @@ void CharacterBuilder::createAbilityScreen() {
 
 void CharacterBuilder::createSkillScreen() {
     skillScreen = new SkillScreen(this);
-    skillScreen->setSkillsList(character->getSkills());
+    QMap<Character::Name, bool> skills;
+    for(auto& skill : character->getSkills()) {
+        skills.insert(skill.getName(), skill.getTrained());
+    }
+    skillScreen->setSkillsList(skills);
+
     connect(skillScreen, &SkillScreen::skillChecked,
             [this](const QString& skill_name, bool is_trained) {
-                character->setSkillTrained(skill_name, is_trained);
+                character->getSkill(skill_name).setTrained(is_trained);
             });
     layout->addWidget(skillScreen, 1, 1, 2, 1);
 }

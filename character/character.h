@@ -5,6 +5,7 @@
 #include <QString>
 #include <QMap>
 #include <character/ability.h>
+#include <character/skill.h>
 
 
 
@@ -26,23 +27,22 @@ public:
 
     void setName(const Name& name);
     void upLevel();
-    void setAbilityValue(Name ability_name, Value value);
-    void setSkillTrained(Name skill_name, bool is_trained);
+    Ability& getAbility(const QString& name);
+    Skill& getSkill(Name skill_name);
 
     const Name& getName() const;
     Level getLevel() const;
     Value getProfiency() const;
     const Ability& getAbility(const QString& name) const;
-    Ability& getAbility(const QString& name);
     const QList<Ability>& getAbilities() const;
-    bool isSkillTrained(Name skill_name) const;
-    const QMap<Name, bool>& getSkills() const;
+    const Skill& getSkill(Name skill_name) const;
+    const QList<Skill>& getSkills() const;
 
 private:
     Name name;
     Level level;
     QList<Ability> abilities;
-    QMap<Name, bool> skills;
+    QList<Skill> skills;
 };
 
 #endif // CHARACTER_H

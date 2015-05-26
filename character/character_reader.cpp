@@ -150,7 +150,7 @@ CharacterReader::Result CharacterReader::readSkillTag() {
         } else {
             return Error;
         }
-        character->skills.insert(skill_name, is_trained);
+        character->skills.push_back(Skill(skill_name, is_trained));
 
     } else {
         return Error;
