@@ -3,8 +3,6 @@
 Ability::Ability(Name name, Value value):
     name(name),
     value(value) {
-
-
 }
 
 

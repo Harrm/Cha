@@ -4,8 +4,6 @@ Skill::Skill(const QString& name,
              bool isTrained):
     name(name),
     isTrained(isTrained) {
-
-
 }
 
 
